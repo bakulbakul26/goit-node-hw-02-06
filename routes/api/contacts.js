@@ -6,7 +6,6 @@ const removeContact = require("../../controllers/contacts/removeContact");
 const updateContact = require("../../controllers/contacts/updateContact");
 const validateBodyUpd = require("../../middlewares/validateBodyUpd");
 const validateBodyAdd = require("../../middlewares/validateBodyAdd");
-const schemas = require("../../schemas/contacts");
 
 const router = express.Router();
 
