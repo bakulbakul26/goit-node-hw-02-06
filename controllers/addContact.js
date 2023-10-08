@@ -8,7 +8,7 @@ const addContact = async (req, res, next) => {
             id: nanoid(),
             ...data,
         };
-        result = await contacts.addContact(newContact);
+        const result = await contacts.addContact(newContact);
         res.status(201).json(result);
     } catch (error) {
         next();
