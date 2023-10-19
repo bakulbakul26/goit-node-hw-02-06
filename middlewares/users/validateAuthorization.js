@@ -9,16 +9,14 @@ const validateAuthorization = async (req, res, next) => {
     if (bearer !== "Bearer") {
         return res.status(401).json({ message: "Not authorized" });
     }
-    try {
-        const { id } = jwt.verify(token, SECRET_KEY);
-        const user = await Users.findById(id);
-        if (!user || !user.token || user.token !== token) {
-            return res.status(401).json({ message: "Not authorized" });
-        }
-        req.user = user;
-        next();
-    } catch {
+    const { id } = jwt.verify(token, SECRET_KEY);
+    const user = await Users.findById(id);
+    if (!user || !user.token || user.token !== token) {
         return res.status(401).json({ message: "Not authorized" });
     }
+    req.user = user;
+
+    next();
 };
+
 module.exports = validateAuthorization;
